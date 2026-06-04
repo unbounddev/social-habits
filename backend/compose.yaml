@@ -1,0 +1,13 @@
+services:
+  pocketbase:
+    build: .
+    container_name: pocketbase
+    restart: always
+    ports:
+      - "8090:8090"
+    volumes:
+      # This stores your actual data, uploads, and db so it survives restarts
+      - ./pb_data:/pb/pb_data
+      # Maps your local migrations into the container to automatically execute updates
+      - ./pb_migrations:/pb/pb_migrations
+      - ./pb_hooks:/pb/pb_hooks
